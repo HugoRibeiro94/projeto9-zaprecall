@@ -32,7 +32,7 @@ export default function Perguntas(props){
                     <img src={play}/>
                 </button>
             </Pergunta>):
-            (<Pergunta1>
+            (<Pergunta1 data-test="flashcard">
                 { segundaVirada === true ? 
                     (<div>
                         <p data-test="flashcard-text">{cards[indice].question}</p>
@@ -41,15 +41,15 @@ export default function Perguntas(props){
                     :
                     (<div>
                         <p data-test="flashcard-text">{cards[indice].answer}</p>
-                            <BotaoNot onClick={responderQuizz} data-test="no-btn">
-                                Não Lembrei
-                            </BotaoNot>
-                            <BotaoQuase onClick={responderQuizz} data-test="partial-btn">
-                                Quase não lembrei
-                            </BotaoQuase>
-                            <BotaoZap onClick={responderQuizz} data-test="zap-btn">
+                        <BotaoNot onClick={responderQuizz} data-test="no-btn">
+                            Não Lembrei
+                        </BotaoNot>
+                        <BotaoQuase onClick={responderQuizz} data-test="partial-btn">
+                            Quase não lembrei
+                        </BotaoQuase>
+                        <BotaoZap onClick={responderQuizz} data-test="zap-btn">
                                 Zap!
-                            </BotaoZap></div>)}
+                        </BotaoZap></div>)}
             </Pergunta1>)}
         </>
     )
