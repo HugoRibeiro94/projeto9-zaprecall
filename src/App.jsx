@@ -4,12 +4,14 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import play from './assets/seta_play.png'
 import cards from './cards';
+import PerguntasCard from './components/Perguntas'
+import { styled } from 'styled-components'
 
 function App() {
 
   const perguntas = ["Pergunta 1","Pergunta 2","Pergunta 3","Pergunta 4","Pergunta 5","Pergunta 6","Pergunta 7","Pergunta 8"];
 
-  //const [pergunta, setPergunta] = useState([]);
+  const [classPergunta, setClassPergunta] = useState('pergunta');
 
   const [perguntaSelecionada, setPerguntaSelecionada] = useState('');
 
@@ -20,42 +22,32 @@ function App() {
     );
   }
 
-  function mostrarPergunta(i){
-    //const perguntaRenderizada = cards[i].question;
-    //console.log(perguntaRenderizada);
-
-    setPerguntaSelecionada(i);
+  function mostrarPergunta(){
+    const classCard = "vermelho";
+    setClassPergunta(classCard);
+    //setPerguntaSelecionada(i);
   }
   //console.log(perguntaSelecionada);
   
   return (
     <>
-      <div className='container'>
+      <Header/>
 
-        <Header/>
-
-        <div className='container-perguntas'>
-          {perguntas.map( (pergunta,indice) => 
-            <div 
-              key={indice} 
-              className='pergunta'
-              data-test="flashcard"
-            >
-              <p data-test="flashcard-text">{pergunta}</p>
-              <button
-                data-test="play-btn" 
-                onClick={() => mostrarPergunta (indice)}>
-                <img src={play}/>
-              </button>
-            </div>
-          )}
-        </div>
+        <ContainerPerguntas>
+          {perguntas.map( (pergunta,indice) => <PerguntasCard key={pergunta} pergunta={pergunta} cards={cards} indice={indice}/>) }
+        </ContainerPerguntas>
         
         <Footer/>
-
-      </div>
     </>
   )
 }
 
 export default App
+
+const ContainerPerguntas = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color:rgba(251, 107, 107, 1)
+`;
