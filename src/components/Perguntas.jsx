@@ -15,6 +15,7 @@ export default function Perguntas(props){
     const [resposta, setResposta] = useState('black');
     const [icone, setIcone] = useState(play);
     const [ativar, setAtivar] = useState(false);
+    const [dataTest, setDataTest] = useState('');
 
     function virarCard(){
         setVirada(false);
@@ -32,14 +33,17 @@ export default function Perguntas(props){
         if(res==='erro'){
             setIcone(erro);
             setAtivar(true);
+            setDataTest("no-icon");
         }
         if(res==='quase'){
             setIcone(quase);
             setAtivar(true);
+            setDataTest("partial-icon");
         }
         if(res==='certo'){
             setIcone(certo);
             setAtivar(true);
+            setDataTest("zap-icon");
         }
     }
 
@@ -48,7 +52,7 @@ export default function Perguntas(props){
             {virada===true ?(<Pergunta resposta={resposta} data-test="flashcard">
                 <p data-test="flashcard-text">{pergunta}</p>
                 <button data-test="play-btn" onClick={virarCard} disabled={ativar}>
-                    <img src={icone}/>
+                    <img data-test={dataTest} src={icone}/>
                 </button>
             </Pergunta>):
             (<Pergunta1 resposta={resposta} data-test="flashcard">
