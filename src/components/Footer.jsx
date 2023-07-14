@@ -1,11 +1,12 @@
 import { styled } from "styled-components";
 
-export default function Footer(){
-    return(
-        <Rodape data-test="footer">
-          <p>CONCLUIDOS</p>
-        </Rodape>
-    );
+export default function Footer(props){
+  const {contador} = props;
+  return(
+      <Rodape data-test="footer">
+        {contador}/8 CONCLUIDOS
+      </Rodape>
+  );
 }
 
 const Rodape = styled.div`

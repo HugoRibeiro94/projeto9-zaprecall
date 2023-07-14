@@ -7,8 +7,8 @@ import { styled } from 'styled-components'
 import { useState } from 'react'
 
 export default function Perguntas(props){
-    //console.log(props.cards)
-    const {pergunta,cards,indice} = props;
+    
+    const {pergunta,cards,indice,contador,setContador} = props;
 
     const [virada, setVirada] = useState(true);
     const [segundaVirada, setSegundaVirada] = useState(true);
@@ -16,12 +16,13 @@ export default function Perguntas(props){
     const [icone, setIcone] = useState(play);
     const [ativar, setAtivar] = useState(false);
     const [dataTest, setDataTest] = useState('');
+    
 
     function virarCard(){
         setVirada(false);
         
     }
-    //console.log(virada);
+   
     function exibirRespostaComBotoes(){
         setSegundaVirada(false);
     }
@@ -29,21 +30,24 @@ export default function Perguntas(props){
     function responderQuizz(res){
         setResposta(res);
         setVirada(true);
-        console.log(res)
+
         if(res==='erro'){
             setIcone(erro);
             setAtivar(true);
             setDataTest("no-icon");
+            setContador(contador+1);
         }
         if(res==='quase'){
             setIcone(quase);
             setAtivar(true);
             setDataTest("partial-icon");
+            setContador(contador+1);
         }
         if(res==='certo'){
             setIcone(certo);
             setAtivar(true);
             setDataTest("zap-icon");
+            setContador(contador+1);
         }
     }
 
