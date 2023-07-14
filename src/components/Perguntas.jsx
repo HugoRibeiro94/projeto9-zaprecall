@@ -3,8 +3,8 @@ import virar from './../assets/seta_virar.png'
 import certo from './../assets/icone_certo.png'
 import erro from './../assets/icone_erro.png'
 import quase from './../assets/icone_quase.png'
-import { styled } from 'styled-components'
 import { useState } from 'react'
+import { BotaoZap, BotaoQuase, BotaoNot, Pergunta1,Pergunta } from "./Perguntas/style";
 
 export default function Perguntas(props){
     
@@ -82,91 +82,3 @@ export default function Perguntas(props){
     )
 }
 
-const BotaoZap = styled.button`
-    width: 85.17px;
-    height: 37.17px;
-    font-family: Recursive;
-    font-weight: 400;
-    font-size: 12px;
-    text-align: center;
-    color: rgba(255, 255, 255, 1);
-    background-color: green;
-    border: none;
-    border-radius: 5px;
-`
-
-const BotaoQuase = styled.button`
-    width: 85.17px;
-    height: 37.17px;
-    font-family: Recursive;
-    font-weight: 400;
-    font-size: 12px;
-    text-align: center;
-    color: rgba(255, 255, 255, 1);
-    background-color: orange;
-    border: none;
-    border-radius: 5px;
-`
-
-const BotaoNot = styled.button`
-    width: 85.17px;
-    height: 37.17px;
-    font-family: Recursive;
-    font-weight: 400;
-    font-size: 12px;
-    text-align: center;
-    color: rgba(255, 255, 255, 1);
-    background-color: red;
-    border: none;
-    border-radius: 5px;
-`;
-
-const Pergunta1= styled.div`
-    width: 300px;
-    height: 100px;
-    margin-bottom: 20px;
-    background-color: rgba(255, 255, 212, 1);
-    color: rgba(51, 51, 51, 1);
-    border-radius: 5px;
-    font-family: Recursive;
-    font-weight: 700;
-    font-size: 16px;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-
-    justify-content: space-around;
-`;
-
-const Pergunta = styled.div`
-    width: 300px;
-    height: 65px;
-    margin-bottom: 20px;
-    background-color: rgba(255, 255, 255, 1);
-    color: ${(p) => {
-        
-        if(p.resposta==='black'){
-            return 'black';
-        }
-        if(p.resposta==='erro'){
-            return 'red';
-        }
-        if(p.resposta==='quase'){
-            return 'orange';
-        }
-        if(p.resposta==='certo'){
-            return 'green';
-        }
-    }};
-    border-radius: 5px;
-    font-family: Recursive;
-    font-weight: 700;
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    button{
-        border: none;
-        background-color: rgba(255, 255, 255, 1);
-      }
-`
