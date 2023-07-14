@@ -7,32 +7,51 @@ import { styled } from 'styled-components'
 import { useState } from 'react'
 
 export default function Perguntas(props){
-    console.log(props.cards)
+    //console.log(props.cards)
     const {pergunta,cards,indice} = props;
 
     const [virada, setVirada] = useState(true);
     const [segundaVirada, setSegundaVirada] = useState(true);
+    const [resposta, setResposta] = useState('black');
+    const [icone, setIcone] = useState(play);
+    const [ativar, setAtivar] = useState(false);
 
     function virarCard(){
-        setVirada(false)
+        setVirada(false);
+        
     }
-
+    //console.log(virada);
     function exibirRespostaComBotoes(){
         setSegundaVirada(false);
     }
 
-    function responderQuizz(){
+    function responderQuizz(res){
+        setResposta(res);
         setVirada(true);
+        console.log(res)
+        if(res==='erro'){
+            setIcone(erro);
+            setAtivar(true);
+        }
+        if(res==='quase'){
+            setIcone(quase);
+            setAtivar(true);
+        }
+        if(res==='certo'){
+            setIcone(certo);
+            setAtivar(true);
+        }
     }
+
     return(
         <>
-            {virada===true ?(<Pergunta data-test="flashcard">
+            {virada===true ?(<Pergunta resposta={resposta} data-test="flashcard">
                 <p data-test="flashcard-text">{pergunta}</p>
-                <button data-test="play-btn" onClick={virarCard}>
-                    <img src={play}/>
+                <button data-test="play-btn" onClick={virarCard} disabled={ativar}>
+                    <img src={icone}/>
                 </button>
             </Pergunta>):
-            (<Pergunta1 data-test="flashcard">
+            (<Pergunta1 resposta={resposta} data-test="flashcard">
                 { segundaVirada === true ? 
                     (<div>
                         <p data-test="flashcard-text">{cards[indice].question}</p>
@@ -41,19 +60,18 @@ export default function Perguntas(props){
                     :
                     (<div>
                         <p data-test="flashcard-text">{cards[indice].answer}</p>
-                        <BotaoNot onClick={responderQuizz} data-test="no-btn">
+                        <BotaoNot onClick={() => responderQuizz('erro')} data-test="no-btn">
                             Não Lembrei
                         </BotaoNot>
-                        <BotaoQuase onClick={responderQuizz} data-test="partial-btn">
+                        <BotaoQuase onClick={() => responderQuizz('quase')} data-test="partial-btn">
                             Quase não lembrei
                         </BotaoQuase>
-                        <BotaoZap onClick={responderQuizz} data-test="zap-btn">
+                        <BotaoZap onClick={() => responderQuizz('certo')} data-test="zap-btn">
                                 Zap!
                         </BotaoZap></div>)}
             </Pergunta1>)}
         </>
     )
-            
 }
 
 const BotaoZap = styled.button`
@@ -117,7 +135,21 @@ const Pergunta = styled.div`
     height: 65px;
     margin-bottom: 20px;
     background-color: rgba(255, 255, 255, 1);
-    color: rgba(51, 51, 51, 1);
+    color: ${(p) => {
+        
+        if(p.resposta==='black'){
+            return 'black';
+        }
+        if(p.resposta==='erro'){
+            return 'red';
+        }
+        if(p.resposta==='quase'){
+            return 'orange';
+        }
+        if(p.resposta==='certo'){
+            return 'green';
+        }
+    }};
     border-radius: 5px;
     font-family: Recursive;
     font-weight: 700;

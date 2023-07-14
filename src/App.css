@@ -4,11 +4,27 @@
 
 .amarelo{
   background-color: yellow;
-  align-items: flex-start ;
+  
+  color: rgba(51, 51, 51, 1);
 }
 
 /*
 
+{props => {
+        if(props.cor===undefined){
+            return rgba(51, 51, 51, 1);
+        }
+        if(props.cor===erro){
+            return red;
+        }
+        if(props.cor===quase){
+            return orange;
+        }
+        if(props.cor===certo){
+            return green;
+        }
+    }}
+    
 { virada === true 
             ?
                 (
